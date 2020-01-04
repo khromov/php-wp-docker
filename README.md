@@ -10,6 +10,12 @@ Aside from the base Apache PHP 7.3 image, it also includes the following modules
 * MySQLi
 * mod_rewrite
 
+
+### How does it work?
+
+* While you are developing your application, you use `docker-compose` which uses the base `Dockerfile` and mounts your local `/src` folder inside it. This means you can develop your application without restarting the container. The `docker-compose` also starts a MySQL database and a phpMyAdmin container for easy administration.
+* For the production workflow we use GitHub Actions and the GitHub Package Registry. Every time you push to `master` a Docker image is built based on the `Dockerfile` and all the files in the `/src` folder are baked into it. This means you can then run this image anywhere in your production environment, as the image we build has all the application files. (see bottom of this readme for detailed instructions).
+
 # Locally starting a dev environment with PHP, MySQL and phpMyAdmin
 
 Copy the env file. You can put any local environment values here:
