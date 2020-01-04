@@ -1,0 +1,9 @@
+# Dev files
+.idea/*
+db/*
+
+# Env
+env_file
+
+# Composer vendor dir
+src/vendor*

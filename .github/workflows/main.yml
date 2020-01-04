@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+    - name: GitHub Docker Action
+      uses: matootie/github-docker@v1.0.1
+      with:
+        # GitHub user to publish the image on behalf of.
+        username: khromov
+        # GitHub Personal Access Token for the user.
+        personalAccessToken: ${{ secrets.GITHUB_TOKEN }}

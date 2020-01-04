@@ -1,0 +1,24 @@
+{
+    "name": "khromov/php-wp-docker",
+    "repositories":[
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org"
+        }
+    ],
+    "config": {
+        "vendor-dir": "src/vendor"
+    },
+    "extra": {
+        "wordpress-install-dir": "src/wp",
+        "installer-paths": {
+            "src/wp-content/plugins/{$name}/":    ["type:wordpress-plugin"],
+            "src/wp-content/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
+            "src/wp-content/themes/{$name}/":     ["type:wordpress-theme"]
+        }
+    },
+    "require": {
+    },
+    "require-dev": {
+    }
+}

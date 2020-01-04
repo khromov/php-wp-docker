@@ -1,0 +1,38 @@
+version: '3.7'
+
+services:
+  db:
+    image: mysql:8
+    command: --default-authentication-plugin=mysql_native_password # Enable old-style authentication
+    volumes:
+      - ./db:/var/lib/mysql
+      - ./scripts:/root/scripts
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: db
+      MYSQL_USER: app
+      MYSQL_PASSWORD: secret
+  php:
+    depends_on:
+      - db
+    build:
+      context: .
+      target: php-base
+    volumes:
+      - ./:/var/www/
+    ports:
+      - "8080:80"
+    restart: always
+    env_file:
+      - env_file
+  phpmyadmin:
+    depends_on:
+      - db
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8001:80"
+    restart: always
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: secret
