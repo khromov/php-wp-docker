@@ -1,4 +1,4 @@
-FROM php:7.3-apache AS php-base
+FROM php:7.4-apache AS php-base
 
 # Set Apache document root
 ENV APACHE_DOCUMENT_ROOT /var/www/src
