@@ -5,6 +5,12 @@ ENV APACHE_DOCUMENT_ROOT /var/www/src
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
+# Use the default production configuration
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
+# Override with custom opcache settings
+COPY docker-config/opcache.ini $PHP_INI_DIR/conf.d/
+
 # Dependencies
 RUN apt-get update -y && apt-get install -y ssh libpng-dev libmagickwand-dev libjpeg-dev libmemcached-dev git unzip subversion && apt-get autoremove && apt-get clean
 
