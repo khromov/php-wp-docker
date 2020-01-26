@@ -18,7 +18,7 @@ RUN apt-get update -y && apt-get install -y ssh libpng-dev libmagickwand-dev lib
 RUN pecl install imagick-3.4.4 memcached && docker-php-ext-enable imagick memcached
 
 # PHP Extensions - docker-php-ext-install
-RUN docker-php-ext-install zip gd mysqli exif pdo pdo_mysql
+RUN docker-php-ext-install zip gd mysqli exif pdo pdo_mysql opcache
 
 # PHP Tools
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
