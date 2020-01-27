@@ -2,12 +2,14 @@
 
 This is a Docker image that allows you to have a local development environment with PHP, MySQL and phpMyAdmin and use the same PHP image in your production application. It is suitable for a wide variety of PHP applications such as WordPress, Drupal, Laravel and more.
 
-Aside from the base Apache PHP 7.3 image, it also includes the following modules:
+Aside from the base Apache PHP 7.4 image, it also includes the following modules:
 
 * ImageMagick
 * Memcached
 * GD2
 * MySQLi
+* PDO
+* Opcache
 * mod_rewrite
 
 
