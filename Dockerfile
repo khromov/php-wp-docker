@@ -12,7 +12,7 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 COPY docker-config/opcache.ini $PHP_INI_DIR/conf.d/
 
 # Dependencies
-RUN apt-get update -y && apt-get install -y ssh libpng-dev libmagickwand-dev libjpeg-dev libmemcached-dev zlib1g-dev libzip-dev git unzip subversion && apt-get autoremove && apt-get clean && rm -rf /var/lib/apt/lists/
+RUN apt-get update -y && apt-get install -y ssh libpng-dev libmagickwand-dev libjpeg-dev libmemcached-dev zlib1g-dev libzip-dev git unzip subversion ca-certificates && apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/
 
 # PHP Extensions - PECL
 RUN pecl install imagick-3.4.4 memcached && docker-php-ext-enable imagick memcached
