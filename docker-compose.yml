@@ -7,7 +7,7 @@ services:
     volumes:
       - ./db:/var/lib/mysql
       - ./scripts:/root/scripts
-    restart: always
+    restart: "no"
     environment:
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: db
@@ -23,7 +23,7 @@ services:
       - ./:/var/www/
     ports:
       - "8080:80"
-    restart: always
+    restart: "no"
     env_file:
       - env_file
   phpmyadmin:
@@ -32,7 +32,7 @@ services:
     image: phpmyadmin/phpmyadmin
     ports:
       - "8001:80"
-    restart: always
+    restart: "no"
     environment:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: secret
