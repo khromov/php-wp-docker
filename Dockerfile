@@ -40,6 +40,6 @@ FROM php-base AS php
 COPY / /var/www/
 
 # Install Composer dependencies
-RUN cd /var/www && composer install --no-dev
+RUN cd /var/www && composer install --no-dev && composer clear-cache
 
 EXPOSE 80
