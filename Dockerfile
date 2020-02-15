@@ -8,9 +8,6 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 # Use the default production configuration
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
-# Override with custom opcache settings
-COPY docker-config/opcache.ini $PHP_INI_DIR/conf.d/
-
 # Dependencies
 RUN apt-get update -y && apt-get install -y ssh libpng-dev libmagickwand-dev libjpeg-dev libmemcached-dev zlib1g-dev libzip-dev git unzip subversion ca-certificates && apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/
 
@@ -33,6 +30,9 @@ RUN a2enmod rewrite
 RUN mkdir -m 700 /root/.ssh; \
   touch -m 600 /root/.ssh/known_hosts; \
   ssh-keyscan github.com > /root/.ssh/known_hosts
+
+# Override default config with custom PHP settings
+COPY docker-config/* $PHP_INI_DIR/conf.d/
 
 FROM php-base AS php
 

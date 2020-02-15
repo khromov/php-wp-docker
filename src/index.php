@@ -1,3 +1,4 @@
 <?php
 require 'vendor/autoload.php';
-echo "Hello from container: " . gethostname();
+echo "<h2 style='text-align: center;'>Hello from container: " . gethostname() . "</h2>";
+phpinfo();
