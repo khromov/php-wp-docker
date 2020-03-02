@@ -12,6 +12,7 @@ Aside from the base Apache PHP 7.4 image, it also includes the following modules
 * Opcache
 * mod_rewrite
 
+**Note:** `/var/www/src` inside the container must be mapped to a volume on the host.
 
 ### How does it work?
 
@@ -93,3 +94,10 @@ You need to:
 * Push your changes.
 * GitHub should build a Docker image for you and push it to `docker.pkg.github.com/<your username>/php-wp-docker/php-wp-docker:master`
 * Now you can pull the image and run it in any way you want. For example if you just want top start the image, you can run: `docker run -p 8080:80 docker.pkg.github.com/khromov/php-wp-docker/php-wp-docker:master`
+
+### Runing just the Apache/PHP image without docker-compose
+
+```
+docker pull docker.pkg.github.com/khromov/php-wp-docker/php-wp-docker:master
+docker run -p 8080:80 -v /your-path-on-host/var/www/:/var/www/src php-wp-docker_php
+```
