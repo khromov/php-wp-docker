@@ -1,4 +1,4 @@
-# PHP 7.4.11 + Apache Docker development and production environment for WordPress, Drupal, Laravel or Lumen
+# PHP 7.4.14 + Apache Docker development and production environment for WordPress, Drupal, Laravel or Lumen
 
 This is a Docker image that allows you to have a local development environment with PHP, MySQL and phpMyAdmin and use the same PHP image in your production application. It is suitable for a wide variety of PHP applications such as WordPress, Drupal, Laravel and more.
 
