@@ -9,15 +9,15 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 # Dependencies
-RUN apt-get update -y && apt-get install -y ssh libpng-dev libmagickwand-dev libjpeg-dev libmemcached-dev zlib1g-dev libzip-dev git unzip subversion ca-certificates libicu-dev && apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/
+RUN apt-get update -y && apt-get install -y ssh libpng-dev libmagickwand-dev libjpeg-dev libmemcached-dev zlib1g-dev libzip-dev git unzip subversion ca-certificates libicu-dev libxml2-dev libmcrypt-dev && apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/
 
 # PHP Extensions - PECL
-RUN pecl install imagick-3.4.4 memcached && docker-php-ext-enable imagick memcached
+RUN pecl install imagick-3.4.4 memcached mcrypt-1.0.4 && docker-php-ext-enable imagick memcached mcrypt
 
 # PHP Extensions - docker-php-ext-install
-RUN docker-php-ext-install zip gd mysqli exif pdo pdo_mysql opcache intl
+RUN docker-php-ext-install zip gd mysqli exif pdo pdo_mysql opcache intl soap
 
-# PGP Extensions - docker-php-ext-configure
+# PHP Extensions - docker-php-ext-configure
 RUN docker-php-ext-configure intl
 
 # PHP Tools
